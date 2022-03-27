@@ -1,0 +1,20 @@
+* {
+	padding: 0;
+	margin: 0;
+}
+a {
+	text-decoration: none;
+	color: aliceblue;
+}
+a:active{
+	text-decoration: none;
+	color: aliceblue;
+}
+a:hover{
+	text-decoration: none;
+	color: aliceblue;
+}
+#resultbtn{
+	position: relative;
+	right: 15px;
+}
