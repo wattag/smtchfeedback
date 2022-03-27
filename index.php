@@ -93,7 +93,16 @@ require "connect.php";
 </html>
 <?php
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (!$_FILES){
+
+    $name = trim($_REQUEST['name']);
+    $email = trim($_REQUEST['email']);
+    $telephone_number = trim($_REQUEST['number']);
+    $type = trim($_REQUEST['radio']);
+    $time = trim($_REQUEST['select']);
+    $message = trim($_REQUEST['textarea']);
+    $mailing = trim($_REQUEST['checkbox']);
+
+    if (!empty($_FILES["image"])){
         $image = $_FILES['image'];
 
         $types = ["image/jpeg", "image/png"];
@@ -110,19 +119,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $fileName = time() . ".$extension";
 
         move_uploaded_file($image["tmp_name"], "uploads/" . $fileName);
+        $filepath = "uploads/".$fileName;
+        $mysqli->query("INSERT INTO messages (name, email, telephone, communication_type, convenient_time, message, mailing, filepath) VALUES ('$name','$email','$telephone_number','$type','$time','$message','$mailing', '$filepath')");
+    }else{
+        $mysqli->query("INSERT INTO messages (name, email, telephone, communication_type, convenient_time, message, mailing) VALUES ('$name','$email','$telephone_number','$type','$time','$message','$mailing')");
     }
 
-    $name = trim($_REQUEST['name']);
-    $email = trim($_REQUEST['email']);
-    $telephone_number = trim($_REQUEST['number']);
-    $type = trim($_REQUEST['radio']);
-    $time = trim($_REQUEST['select']);
-    $message = trim($_REQUEST['textarea']);
-    $mailing = trim($_REQUEST['checkbox']);
 
-    $mysqli->query("INSERT INTO messages (name, email, telephone, communication_type, convenient_time, message, mailing) VALUES ('$name','$email','$telephone_number','$type','$time','$message','$mailing')");
-
-    /*гугл-акк для smtp  testmailtestmailg@gmail.com test123test*/
-    mail("litvinov374@gmail.com", "Письмо от пользователя", $message);
+    /*Аккаунт с которого отправляются письма -->  testmailtestmailg@gmail.com test123test*/
+    mail("litvinov374@gmail.com", "Письмо от пользователя ".$name, $message);
 }
 ?>

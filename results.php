@@ -35,21 +35,21 @@ $feed = $mysqli->query("SELECT * FROM messages");
         <tbody>
         <?php foreach($feeds as $feed) :?>
         <tr>
-
-                <td><?php echo $feed['id']; ?></td>
-                <td><?php echo $feed['name'];?></td>
-                <td><?php echo $feed['email']; ?></td>
-                <td><?php echo $feed['telephone']; ?></td>
-                <td><?php echo $feed['communication_type']; ?></td>
-                <td><?php echo $feed['convenient_time']; ?></td>
-                <td><?php echo $feed['message']; ?></td>
-                <td><?php echo $feed['mailing']; ?></td>
+            <td><?php echo $feed['id']; ?></td>
+            <td><?php echo $feed['name'];?></td>
+            <td><?php echo $feed['email']; ?></td>
+            <td><?php echo $feed['telephone']; ?></td>
+            <td><?php echo $feed['communication_type']; ?></td>
+            <td><?php echo $feed['convenient_time']; ?></td>
+            <td><?php echo $feed['message']; ?></td>
+            <td><?php echo $feed['mailing']; ?></td>
         </tr>
         <?php endforeach; ?>
         </tbody>
+
     </table>
     <div class="form-group">
-        <button id="resultbtn" class="btn btn-dark">
+        <button id="back" class="btn btn-dark">
             <a id="result" href="index.php">Вернуться обратно</a>
         </button>
     </div>
